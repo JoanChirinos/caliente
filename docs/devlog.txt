@@ -1,0 +1,1 @@
+- We can possibly make our media player a reality by simply avoiding the use of mp3. Convert desired mp3 into a wave file and process it as such.
