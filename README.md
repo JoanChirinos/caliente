@@ -1,8 +1,6 @@
-# caliente
+# caliente: Joan Chirinos, George Liang, Aaron Li
 
-### Joan Chirinos, George Liang, Aaron Li
-
-# Project Description*
+# Project Description
 Our team hopes to make a functional media player with most, if not all, all the functions of a typical media player. This includes but is not limited to:
 * Play/Pause button that plays/stops music
 * Skip next/previous button that goes to the next or previous song in the queue
