@@ -1,0 +1,24 @@
+caliente
+George Liang, Aaron Li, Joan Chirinos
+
+- The most crucial jobs are figuring out how to read in mp3 files and play them silently,
+ getting data structures to implement playlists, and making a friendly UI in processing for
+ our muted media player.
+
+- The essentials are silence, ability to play mp3, and ability to create playlists and add 
+new songs from a library of music.
+
+- In order to make a playlist, we must first figure out how to read in mp3 files or wav files,
+then figure out how to silence processing once it plays music. This way we can implement a 
+playlist that allows us to queue up songs.
+
+- All essential tasks can be delegated and separated into reading mp3/silencing, data structure
+incorporation into playlists, and making processing. There is a possibility for collaboration
+in creating playlists as you can have many different kinds such as a single playthrough, repeating, or 
+a shuffled version. The processing also requires every other part to be finished.
+
+- We expect a completed project to be available sometime next week. 
+5/31/18 we will figure out playing music files and making playlists.
+A couple extra days will be alloted if needed. 
+Processing shouldn't take too long to finish knowing that we just need
+to make buttons.
