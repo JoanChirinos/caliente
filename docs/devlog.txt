@@ -78,5 +78,8 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
+
+2018-05-31
+George :: Drafted our team's first plan, pushed revised proposal, and linked submodule.
 ==============================================================
 
