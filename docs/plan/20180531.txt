@@ -22,3 +22,6 @@ a shuffled version. The processing also requires every other part to be finished
 A couple extra days will be alloted if needed. 
 Processing shouldn't take too long to finish knowing that we just need
 to make buttons.
+
+We plan to continue reworking our project based on Mr. Brown's wishes—until
+he greenlights our idea
