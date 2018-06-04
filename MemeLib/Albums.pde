@@ -11,7 +11,7 @@ class Albums {
     
   }
   
-  void onMouseClick() {
-    
+  String onMouseClick() {
+    return "";
   }
 }

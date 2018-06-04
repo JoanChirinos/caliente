@@ -11,7 +11,7 @@ class View {
     
   }
   
-  void onMouseClick() {
-    
+  String onMouseClick() {
+    return "";
   }
 }

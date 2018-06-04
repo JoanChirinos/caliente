@@ -32,14 +32,21 @@ void draw() {
 }
 
 void mouseClicked() {
+  String ret = "";
   if (state == MAIN_SCREEN) {
-    m.onMouseClick();
+    ret = m.onMouseClick();
   }
   else if (state == ALBUMS_SCREEN) {
     a.onMouseClick();
   }
   else if (state == VIEW_SCREEN) {
     v.onMouseClick();
+  }
+  
+  if (!(ret.equals(""))) {
+    //do something
+    
+    
   }
 }
 
