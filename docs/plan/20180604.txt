@@ -1,0 +1,20 @@
+caliente
+Aaron Li, Joan Chirinos, George Liang
+
+Plan Update:
+
+- In order to have a repeat functionality, we use implement the use of a Deque. This way, elements can be popped and appended to the end,
+  maintaining the order.
+  
+- In order to have a shuffling functionality, we will randomly pop off a number of elements in the Deque, and append them in the same order 
+  to the end, and this way, random images will be viewed each time.
+
+- Skip and Prev will simply pop and view end of Deque respectively.
+
+- Processing's coordinate system will be used to determine where the user clicks, hence which buttons/regions are to be activated
+
+- Import/export function will have to be researched.
+
+- We will have multiple UIs: a screen for viewing image, an album list/creator, a screen to view the image list in a certain album, and a main
+  menu screen.
+  
