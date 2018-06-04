@@ -1,0 +1,17 @@
+caliente
+Aaron Li, Joan Chirinos, George Liang
+
+// Instance Variables
+
+boolean _shuffle: toggle true/false to allow shuffle functionality
+boolean _repeat: toggle true/false to allow repeating functionality
+
+// Methods to Implement in Backend.java
+
+1) makeAlbum(): creates a new Deque to store files in one album 
+2) add(): add a new image file by url
+3) delete(): remove a picture from an album
+4) skip(): skip to next image in the Deque
+5) prev(): same functionality as skip, except it goes to the previously played song
+6) displayImage(): joan's stuff
+7) play(): plays the slideshow, following the Deque
