@@ -38,7 +38,7 @@ class Main {
     return "";
   }
   
-  void drawButton(String text, int textSize, int x, int y, int w, int h, color c) {
+  void drawButton(String text, float textSize, float x, float y, float w, float h, color c) {
     fill(c);
     rect(x, y, w, h);
     fill(textColor);
@@ -46,11 +46,11 @@ class Main {
     text(text, x, y, w, h);
   }
   
-  boolean isHovering(int x, int y, int w, int h) {
+  boolean isHovering(float x, float y, float w, float h) {
     return (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h);
   }
   
-  void drawText(String text, int size, int x, int y, int w, int h) {
+  void drawText(String text, float size, float x, float y, float w, float h) {
     fill(textColor);
     textSize(size);
     text(text, x, y, w, h);
