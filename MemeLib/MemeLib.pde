@@ -21,12 +21,13 @@ void setup() {
 
 void draw() {
   if (state == MAIN_SCREEN) {
+    m.setup();
     m.drawOne();
-  }
-  else if (state == ALBUMS_SCREEN) {
+  } else if (state == ALBUMS_SCREEN) {
+    a.setup();
     a.drawOne();
-  }
-  else if (state == VIEW_SCREEN) {
+  } else if (state == VIEW_SCREEN) {
+    a.setup();
     v.drawOne();
   }
 }
@@ -35,30 +36,35 @@ void mouseClicked() {
   String ret = "";
   if (state == MAIN_SCREEN) {
     ret = m.onMouseClick();
-  }
-  else if (state == ALBUMS_SCREEN) {
-    a.onMouseClick();
-  }
-  else if (state == VIEW_SCREEN) {
-    v.onMouseClick();
-  }
-  
-  if (!(ret.equals(""))) {
-    //do something
-    
-    
+    println(ret);
+    if (ret.equals("all")) {
+      state = VIEW_SCREEN;
+    } else if (ret.equals("albums")) {
+      //display album pane
+      state = ALBUMS_SCREEN;
+    } else if (ret.equals("exit")) {
+      //exits program
+      exit();
+    }
+  } else if (state == ALBUMS_SCREEN) {
+    ret = a.onMouseClick();
+    if (ret.equals("back")) {
+      state = MAIN_SCREEN;
+    }
+  } else if (state == VIEW_SCREEN) {
+    ret = v.onMouseClick();
   }
 }
 
 /*
 STATES
-if (state == MAIN_SCREEN) {
-  
-}
-else if (state == ALBUMS_SCREEN) {
-  
-}
-else if (state == VIEW_SCREEN) {
-  
-}
-*/
+ if (state == MAIN_SCREEN) {
+ 
+ }
+ else if (state == ALBUMS_SCREEN) {
+ 
+ }
+ else if (state == VIEW_SCREEN) {
+ 
+ }
+ */
