@@ -8,9 +8,11 @@ void setup(){
 
 void draw(){
   if (keyPressed){
+    //Type Shift + s to save sketch as newpic.jpg
     if (key == 'S'){
       save("newpic.jpg");
     }
+    //Type Shift + c to clear sketch
     if (key == 'C'){
       background(0);
     }
