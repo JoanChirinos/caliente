@@ -11,21 +11,39 @@ class Albums {
   final color white = color(255, 255, 255);
   final color black = color(0, 0, 0);
   
+  int albumPage = 0;
+  boolean drawn = false;
+  
   ArrayList<String[]> albumList;
   
   String albumSelected;
+  
+  boolean hasSetUpAlready = false;
+  
+  boolean canGoForward, canGoBack;
 
   //Main Screen
 
   void setup() {
-    background(backgroundColor);
-    textAlign(CENTER, CENTER);
-    
-    albumSelected = "";
-    
-    albumList = new ArrayList<String[]>();
-    
-    populateAlbumList();
+    if (!hasSetUpAlready) {
+      background(backgroundColor);
+      textAlign(CENTER, CENTER);
+      
+      albumSelected = "";
+      
+      albumList = new ArrayList<String[]>();
+      
+      populateAlbumList();
+      
+      for (String[] i : albumList) {
+        for (String s : i) {
+          print(s);
+          print("\t");
+        }
+        println();
+      }
+      hasSetUpAlready = true;
+    }
   }
 
   void drawOne() {
@@ -59,10 +77,14 @@ class Albums {
     
     //album selection label
     drawText(albumSelectionTabLabel, 30, 50, 100, 500, 50);
+    
+    drawAlbums();
   }
   
   String onMouseClick() {
     if (mouseX >= 25 && mouseX <= 125 && mouseY >= 25 && mouseY <= 75) {
+      hasSetUpAlready = false;
+      drawn = false;
       return "back";
     }
     return "";
@@ -87,30 +109,20 @@ class Albums {
   }
   
   void populateAlbumList() {
-    String line = "";
     //temporary sample
-    BufferedReader br = createReader("sampleAlbumList.csv");
-    while (true) {
-      try {
-        line = br.readLine();
-      }
-      catch (IOException e) {
-        e.printStackTrace();
-        line = null;
-      }
-      if (line == null) {
-        //this means no lines are left
-        return;
-      }
-      else {
-        if (line.equals("")) return;
-        albumList.add(line.split(","));   
-      }
+    String[] lines = loadStrings("sampleAlbumList.csv");
+    for (String s : lines) {
+      if (!s.equals("")) albumList.add(s.split(","));
     }
   }
   
   //calls drawAlbum a bunch to draw albums
   void drawAlbums() {
+    for (int i = 0; i < 23; i++) {
+      if (i + albumPage * 23 < albumList.size()) {
+        drawAlbumTab(albumList.get(i + albumPage * 23), 50, 150 + i * 25, 500, 25);
+      }
+    }
   }
   
   //info should be [name, dateCreated, numberOfPics]
@@ -118,9 +130,9 @@ class Albums {
     float nameWidth = w * 0.6;
     float dateWidth = w * 0.2;
     float numberWidth = w * 0.2;
-    drawButton(info[0], 10, x, y, nameWidth, h, black);
-    drawButton(info[1], 10, x, y, dateWidth, h, black);
-    drawButton(info[2], 10, x, y, numberWidth, h, black);
+    drawButton(info[0], 10, x, y, nameWidth, h, white);
+    drawButton(info[1], 10, x + nameWidth, y, dateWidth, h, white);
+    drawButton(info[2], 10, x + nameWidth + dateWidth, y, numberWidth, h, white);
   }
   
 }
