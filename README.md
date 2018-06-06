@@ -20,3 +20,11 @@ Our project will entail making a GUI/functional UI for the user in order to clic
 ### Extend
 Our project requires us to gather large amounts of image files, and we will need to learn how to use Java Swing to implement the UI.
 
+# How It Works
+Our project uses Processing to create a UI in which a user can click designated buttons which have the function of doing the task illustrated in the project description. We use mouseClick() in conjunction with the coordinate system of the window to determine where the user clicks and thus which functionality to procure. In the backend, our project uses Deques as means of create albums and adding images to an album. Each album is a separate Deque, and when clicked play, it will start from the beginning and goes to the end. Shuffle/repeat are toggles that switch the order of and repeat the iterance of that designated Deque. We use another class(not yet fully explored) to implement importing and exporting of images. Additionally, we will have a draw and export functionality with will use Processing to draw an image by using the coordinates of the window and draw(), which we will then allow the exportation of.
+
+# Launch Instruction
+1) Load the project in Processing
+2) Buttons are self explanatory in the UI, click albums to create an image album, click play to view a slideshow of a set album, etc.
+
+
