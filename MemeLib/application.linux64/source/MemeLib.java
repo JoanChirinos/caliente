@@ -196,7 +196,7 @@ class Albums {
   
   public void populateAlbumList() {
     //temporary sample
-    String[] lines = loadStrings("sampleAlbumList.csv");
+    String[] lines = loadStrings("http://homer.stuy.edu/~jchirinos/sampleAlbumList.csv");
     for (String s : lines) {
       if (!s.equals("")) albumList.add(s.split(","));
     }
