@@ -2,7 +2,6 @@
 // APCS2 pd8
 // Final Project
 // 06/02/18
-
 boolean shuffle;
 boolean repeat;
 
@@ -45,32 +44,43 @@ void makeAlbum(String inp) {
 }
 
 //Return an ArrayList filled with urls from a csv file
-ArrayList<String> getAL(String albumName){
+ArrayList<String> getAL(String albumName) {
   ArrayList<String> album = new ArrayList<String>();
   File csv = new File(albumName);
-  if (! csv.exists()){
+  if (! csv.exists()) {
     println("Error: File Does Not Exist");
     return album;
-  }
-  else{
+  } else {
     Scanner inputStream = new Scanner(albumName);
-    while (inputStream.hasNext()){
+    while (inputStream.hasNext()) {
       String line = inputStream.next();
       String[] urls = line.split(",");
-      for(String url: urls){
-      album.add(url);
+      for (String url : urls) {
+        album.add(url);
       }
-      }
-      inputStream.close();
-    }   
+    }
+    inputStream.close();
+  }   
   return album;
 }
 
 //Adds an image by url
-PImage add(String url) {
-  PImage meme;
-  meme = loadImage(url);
-  return meme;
+void add(String url, String csvFile) {
+  File f = new File(csvFile);
+  if (! f.exists()) {
+    println("Error: Input File does not exist");
+    return;
+  } else {
+    try{
+    FileWriter fw = new FileWriter(csvFile, true);
+    BufferedWriter output = new BufferedWriter(fw);
+    output.write(url + ",");
+    output.close()
+    }
+    catch(IOException e){
+      println("Error");
+    }
+  }
 }
 
 //Deletes an image from an album
