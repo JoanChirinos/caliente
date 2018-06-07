@@ -26,7 +26,7 @@ class Backend {
         FileWriter albumWriter = new FileWriter("album.csv", true);
         BufferedWriter aW = new BufferedWriter(albumWriter);
         FileWriter output = new FileWriter(csvName); //Create empty file with the file name
-        aW.write(csvName + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
+        aW.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
         aW.close();
         output.close();
       }
