@@ -45,7 +45,7 @@ class NewAlbum {
       if (k == BACKSPACE) {
         if (currentName.length() > 0) currentName = currentName.substring(0, currentName.length() - 1);
       }
-      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k))) {
+      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k)) || k == ' ') {
         currentName += key;
       }
     }
