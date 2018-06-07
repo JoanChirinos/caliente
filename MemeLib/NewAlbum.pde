@@ -58,8 +58,8 @@ class NewAlbum {
   String onMouseClick() {
     if (isHovering(450, 170, 100, 50)) {
       b.makeAlbum(currentName);
+      println("clicked");
     }
-    println("clicked");
     return currentName;
   }
   
