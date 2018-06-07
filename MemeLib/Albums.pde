@@ -53,39 +53,48 @@ class Albums {
     
     //draw album background
     fill(white);
-    rect(50, 100, 500, 675);
+    rect(50, 100, 500, 575);
     rect(50, 100, 500, 50);
     
     //tab for buttons
-    rect(50, 725, 500, 50);
+    rect(50, 625, 500, 50);
     
     //buttons
     //hover color
     color hc = color(220, 220, 220);
     
     //backPage
-    if (isHovering(50, 725, 150, 50)) drawButton("<<", 20, 50, 725, 150, 50, hc);
-    else drawButton("<<", 20, 50, 725, 150, 50, white);
+    if (isHovering(50, 625, 150, 50)) drawButton("<<", 20, 50, 625, 150, 50, hc);
+    else drawButton("<<", 20, 50, 625, 150, 50, white);
     
     //select
-    if (isHovering(225, 725, 150, 50)) drawButton("Select", 20, 225, 725, 150, 50, hc);
-    else drawButton("Select", 20, 225, 725, 150, 50, white);
+    if (isHovering(225, 625, 150, 50)) drawButton("Select", 20, 225, 625, 150, 50, hc);
+    else drawButton("Select", 20, 225, 625, 150, 50, white);
     
     //forwardPage
-    if (isHovering(400, 725, 150, 50)) drawButton(">>", 20, 400, 725, 150, 50, hc);
-    else drawButton(">>", 20, 400, 725, 150, 50, white);
+    if (isHovering(400, 625, 150, 50)) drawButton(">>", 20, 400, 625, 150, 50, hc);
+    else drawButton(">>", 20, 400, 625, 150, 50, white);
     
     //album selection label
     drawText(albumSelectionTabLabel, 30, 50, 100, 500, 50);
     
     drawAlbums();
+    
+    //new album
+    if (isHovering(380, 25, 195, 50)) drawButton("New album", 30, 380, 25, 195, 50, buttonColorHover);
+    else drawButton("New album", 30, 380, 25, 195, 50, buttonColor);
   }
   
   String onMouseClick() {
-    if (mouseX >= 25 && mouseX <= 125 && mouseY >= 25 && mouseY <= 75) {
+    if (isHovering(25, 25, 100, 50)) {
       hasSetUpAlready = false;
       drawn = false;
       return "back";
+    }
+    else if (isHovering(380, 25, 195, 50)) {
+      hasSetUpAlready = false;
+      drawn = false;
+      return "newAlbum";
     }
     return "";
   }
@@ -110,7 +119,7 @@ class Albums {
   
   void populateAlbumList() {
     //temporary sample
-    String[] lines = loadStrings("http://homer.stuy.edu/~jchirinos/sampleAlbumList.csv");
+    String[] lines = loadStrings("http://homer.stuy.edu/~jchirinos/albumList.csv");
     for (String s : lines) {
       if (!s.equals("")) albumList.add(s.split(","));
     }
@@ -118,10 +127,8 @@ class Albums {
   
   //calls drawAlbum a bunch to draw albums
   void drawAlbums() {
-    for (int i = 0; i < 23; i++) {
-      if (i + albumPage * 23 < albumList.size()) {
-        drawAlbumTab(albumList.get(i + albumPage * 23), 50, 150 + i * 25, 500, 25);
-      }
+    for (int i = 0; i < albumList.size() && i < 19; i++) {
+      drawAlbumTab(albumList.get(i + albumPage * 23), 50, 150 + i * 25, 500, 25);
     }
   }
   

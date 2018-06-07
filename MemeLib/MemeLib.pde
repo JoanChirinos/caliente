@@ -3,20 +3,23 @@
 final int MAIN_SCREEN = 0;
 final int ALBUMS_SCREEN = 1;
 final int VIEW_SCREEN = 2;
+final int NEW_ALBUM_SCREEN = 3;
 
 int state;
 Main m;
 Albums a;
 View v;
+NewAlbum n;
 
 void setup() {
-  size(600, 800);
+  size(600, 700);
   background(0, 0, 0);
   state = MAIN_SCREEN;
 
   m = new Main();
   a = new Albums();
   v = new View();
+  n = new NewAlbum();
 }
 
 void draw() {
@@ -29,7 +32,11 @@ void draw() {
   } else if (state == VIEW_SCREEN) {
     a.setup();
     v.drawOne();
+  } else if (state == NEW_ALBUM_SCREEN) {
+    n.setup();
+    n.drawOne();
   }
+  //println(mouseX + ", " + mouseY);
 }
 
 void mouseClicked() {
@@ -50,6 +57,9 @@ void mouseClicked() {
     ret = a.onMouseClick();
     if (ret.equals("back")) {
       state = MAIN_SCREEN;
+    }
+    else if (ret.equals("newAlbum")) {
+      state = NEW_ALBUM_SCREEN;
     }
   } else if (state == VIEW_SCREEN) {
     ret = v.onMouseClick();

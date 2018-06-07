@@ -17,22 +17,22 @@ class Main {
   }
 
   void drawOne() {
-    if (isHovering(50, 75, 500, 200)) drawButton(buttonOne, 40, 50, 75, 500, 200, buttonColorHover);
-    else drawButton(buttonOne, 40, 50, 75, 500, 200, buttonColor);
+    if (isHovering(50, 25, 500, 200)) drawButton(buttonOne, 40, 50, 25, 500, 200, buttonColorHover);
+    else drawButton(buttonOne, 40, 50, 25, 500, 200, buttonColor);
 
-    if (isHovering(50, 300, 500, 200)) drawButton(buttonTwo, 40, 50, 300, 500, 200, buttonColorHover);
-    else drawButton(buttonTwo, 40, 50, 300, 500, 200, buttonColor);
+    if (isHovering(50, 250, 500, 200)) drawButton(buttonTwo, 40, 50, 250, 500, 200, buttonColorHover);
+    else drawButton(buttonTwo, 40, 50, 250, 500, 200, buttonColor);
     
-    if (isHovering(50, 525, 500, 200)) drawButton(buttonThree, 40, 50, 525, 500, 200, buttonColorHover);
-    else drawButton(buttonThree, 40, 50, 525, 500, 200, buttonColor);
+    if (isHovering(50, 475, 500, 200)) drawButton(buttonThree, 40, 50, 475, 500, 200, buttonColorHover);
+    else drawButton(buttonThree, 40, 50, 475, 500, 200, buttonColor);
   }
 
   String onMouseClick() {
     if (isHovering(50, 75, 500, 200)) {
       return "all";
-    } else if (isHovering(50, 300, 500, 200)) {
+    } else if (isHovering(50, 250, 500, 200)) {
       return "albums";
-    } else if (isHovering(50, 525, 500, 200)) {
+    } else if (isHovering(50, 475, 500, 200)) {
       return "exit";
     }
     return "";
