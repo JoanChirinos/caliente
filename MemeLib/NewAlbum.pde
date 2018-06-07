@@ -12,6 +12,8 @@ class NewAlbum {
   
   String currentName;
   
+  Backend b;
+  
   void setup() {
     if (!hasSetUpAlready) {
       background(backgroundColor);
@@ -21,6 +23,7 @@ class NewAlbum {
       
       hasSetUpAlready = true;
       keyPressDelay = 0;
+      b = new Backend();
     }
   }
   
@@ -37,11 +40,12 @@ class NewAlbum {
     
     if (keyPressDelay == 0 && keyPressed) {
       keyPressDelay = 5;
+      char k = key;
       
-      if (key == BACKSPACE) {
+      if (k == BACKSPACE) {
         if (currentName.length() > 0) currentName = currentName.substring(0, currentName.length() - 1);
       }
-      else if (currentName.length() <= 20 && Character.isLetter(key)) {// && key != TAB && key != ENTER && key != RETURN && key != ESC && key != DELETE) {
+      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k) || k == ' ')) {
         currentName += key;
       }
     }
@@ -50,9 +54,11 @@ class NewAlbum {
     }
   }
   
-  void onMouseClick() {
+  String onMouseClick() {
     if (isHovering(450, 170, 100, 50)) {
+      b.makeAlbum(currentName);
     }
+    return currentName;
   }
   
   void drawButton(String text, float textSize, float x, float y, float w, float h, color c) {

@@ -63,6 +63,8 @@ void mouseClicked() {
     }
   } else if (state == VIEW_SCREEN) {
     ret = v.onMouseClick();
+  } else if (state == NEW_ALBUM_SCREEN) {
+    ret = n.onMouseClick();
   }
 }
 
