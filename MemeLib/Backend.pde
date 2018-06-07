@@ -24,6 +24,7 @@ class Backend {
       FileWriter output = null;
       try {
         output = new FileWriter(file); //Create empty file with the file name
+        output.write("");
       }
       catch (IOException e) {
         println("It Broke");
