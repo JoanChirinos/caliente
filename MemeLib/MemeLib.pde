@@ -43,7 +43,6 @@ void mouseClicked() {
   String ret = "";
   if (state == MAIN_SCREEN) {
     ret = m.onMouseClick();
-    println(ret);
     if (ret.equals("all")) {
       state = VIEW_SCREEN;
     } else if (ret.equals("albums")) {
@@ -65,6 +64,7 @@ void mouseClicked() {
     ret = v.onMouseClick();
   } else if (state == NEW_ALBUM_SCREEN) {
     ret = n.onMouseClick();
+    
   }
 }
 

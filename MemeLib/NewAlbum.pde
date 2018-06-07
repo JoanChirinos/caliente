@@ -36,7 +36,7 @@ class NewAlbum {
     if (isHovering(450, 170, 100, 50)) drawButton("Okay", 30, 450, 170, 100, 50, color(220, 220, 220));
     else drawButton("Okay", 30, 450, 170, 100, 50, white);
     
-    if (keyPressed) println(key);
+    drawText("Only letters and numbers please", 15, 50, 210, 500, 50);
     
     if (keyPressDelay == 0 && keyPressed) {
       keyPressDelay = 5;
@@ -45,12 +45,13 @@ class NewAlbum {
       if (k == BACKSPACE) {
         if (currentName.length() > 0) currentName = currentName.substring(0, currentName.length() - 1);
       }
-      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k) || k == ' ')) {
+      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k))) {
         currentName += key;
       }
     }
     else if (keyPressDelay > 0) {
       keyPressDelay--;
+      println(keyPressDelay);
     }
   }
   
