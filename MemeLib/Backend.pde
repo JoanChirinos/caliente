@@ -10,23 +10,20 @@ class Backend {
   boolean repeat;
 
 
-  //Creates a new .txt file to store files 
+  //Creates a new .csv file to store files 
   void makeAlbum(String inp) {
-    File file = new File(sketchPath("album.csv"));
     int d = day();
     int m = month();
     int y = year();
     int hr = hour();
     int min = minute();
-    if (! file.exists()) {
-      PrintWriter output = createWriter("album.csv");
-      output.println(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
-      output.close();
+    File file = new File(inp + d + m + y + hr + min);
+    if ( file.exists()) {
+       println("Error: File Already Exists");
     } else {
       FileWriter output = null;
       try {
-        output = new FileWriter(file, true); //the true will append the new data
-        output.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
+        output = new FileWriter(file); //Create empty file with the file name
       }
       catch (IOException e) {
         println("It Broke");
