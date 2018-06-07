@@ -17,14 +17,17 @@ class Backend {
     int y = year();
     int hr = hour();
     int min = minute();
-    String csvFileName = inp + d + m + y + hr + min;
-    File file = new File(csvFileName);
+    String csvName = inp + ".csv";
+    File file = new File(csvName);
     if ( file.exists()) {
       println("Error: File Already Exists");
     } else {
       try {
-        FileWriter output = new FileWriter(csvFileName); //Create empty file with the file name
-        output.write("");
+        FileWriter albumWriter = new FileWriter("album.csv", true);
+        BufferedWriter aW = new BufferedWriter(albumWriter);
+        FileWriter output = new FileWriter(csvName); //Create empty file with the file name
+        aW.write(csvName + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
+        aW.close();
         output.close();
       }
       catch (IOException e) {
