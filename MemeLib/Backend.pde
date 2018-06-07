@@ -77,7 +77,7 @@ class Backend {
         FileWriter fw = new FileWriter(csvFile, true);
         BufferedWriter output = new BufferedWriter(fw);
         output.write(url + ",");
-        output.close()
+        output.close();
       }
       catch(IOException e) {
         println("Error");
@@ -85,7 +85,7 @@ class Backend {
     }
   }
 
-  //Deletes an image from an album
+  //Deletes an image from an album by parsing through a csv and recopying over urls not equal to the one in parameter
   void delete(String url, String albumName) {
     ArrayList<String> newAlbum = new ArrayList<String>();
     File f = new File(albumName);
@@ -101,6 +101,18 @@ class Backend {
             newAlbum.add(url);
           }
         }
+      }
+      inputStream.close();
+      try{
+        FileWriter writer = new FileWriter(albumName);
+        BufferedWriter output = new BufferedWriter(writer);
+        for(int i = 0; i < newAlbum.size(); i++){
+          output.write(newAlbum.get(i) + ",");
+        }
+        output.close();
+      }
+      catch(IOException e){
+        println("Deletion Error");
       }
     }
   }
