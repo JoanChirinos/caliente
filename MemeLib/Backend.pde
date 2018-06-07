@@ -2,11 +2,12 @@
 // APCS2 pd8
 // Final Project
 // 06/02/18
+import java.io.*;
+import java.util.Scanner;
+
 boolean shuffle;
 boolean repeat;
 
-import java.io.*;
-import java.util.Scanner;
 
 //Creates a new .txt file to store files 
 void makeAlbum(String inp) {
@@ -71,32 +72,46 @@ void add(String url, String csvFile) {
     println("Error: Input File does not exist");
     return;
   } else {
-    try{
-    FileWriter fw = new FileWriter(csvFile, true);
-    BufferedWriter output = new BufferedWriter(fw);
-    output.write(url + ",");
-    output.close()
+    try {
+      FileWriter fw = new FileWriter(csvFile, true);
+      BufferedWriter output = new BufferedWriter(fw);
+      output.write(url + ",");
+      output.close()
     }
-    catch(IOException e){
+    catch(IOException e) {
       println("Error");
     }
   }
 }
 
 //Deletes an image from an album
-void delete() {
-}
+void delete(String url, String albumName) {
+  ArrayList<String> newAlbum = new ArrayList<String>();
+  File f = new File(albumName);
+  if (! f.exists()) {
+    println("Error: File Does Not Exist");
+  } else {
+    Scanner inputStream = new Scanner(albumName);
+    while (inputStream.hasNext()) {
+      String line = inputStream.next();
+      String[] urls = line.split(",");
+      for (String x : urls) {
+        if (! x.equals(url)) {
+          newAlbum.add(url);
+        }
+      }
+    }
 
-//Skips to next image in album
-void skip() {
-}
+    //Skips to next image in album
+    void skip() {
+    }
 
-//Skips to previous image in album
-void prev() {
-}
+    //Skips to previous image in album
+    void prev() {
+    }
 
-//Displays image in the image screen
-void displayImage() {
-}
+    //Displays image in the image screen
+    void displayImage() {
+    }
 
-//Plays the slideshow in the album by following Deque order
+    //Plays the slideshow in the album by following Deque order
