@@ -1,5 +1,3 @@
-- We can possibly make our media player a reality by simply avoiding the use of mp3. Convert desired mp3 into a wave file and process it as such.
-
 caliente
 Aaron Li
 Joan Chirinos
@@ -7,7 +5,7 @@ George Liang
 
 pd 8
 ---------------------
-Spotimute
+MemeLib
 
 
 
@@ -39,20 +37,18 @@ OBSTACLES OVERCOME
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
+We learned a lot about using FileWriters and also createWriter in processing. We utilized Java's File class to check 
+if a File even exists in current Directory.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We changed ___ to ___ bc...
-<etc>
-<etc>
+A lot of our methods started out with no parameters because we didn't realize what we were going to deal with. 
+Eventually, with a lot of sketching and note writing we came to the conclusion that some methods needed parameters for
+filename ontop of just a String that represented url.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,5 +77,8 @@ yyyy-mm-dd
 
 2018-05-31
 George :: Drafted our team's first plan, pushed revised proposal, and linked submodule.
+2018-06-07
+George :: Implemented methods in Backend.java
+
 ==============================================================
 
