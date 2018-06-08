@@ -20,11 +20,11 @@ class Backend {
     int hr = hour();
     int min = minute();  
     String csvName = inp + ".csv";
-    File file = new File(csvName);
-    File albumFile = new File("album.csv");
+    File file = new File(dataPath(""),"/" + csvName);
+    File albumFile = new File(dataPath(""),"/album.csv");
     if (! albumFile.exists()) { // checks of album.csv exists, if not, create it 
       try {
-        FileWriter newAlbumFile = new FileWriter("album.csv");
+        FileWriter newAlbumFile = new FileWriter(dataPath("") + "/album.csv");
         newAlbumFile.close();
       }
       catch(IOException e) {        
@@ -35,9 +35,9 @@ class Backend {
       println("Error: File Already Exists");
     } else { // if album.csv exists, just write to it the name album name
       try {
-        FileWriter albumWriter = new FileWriter("album.csv", true);
+        FileWriter albumWriter = new FileWriter(dataPath("")+ "/album.csv", true);
         BufferedWriter aW = new BufferedWriter(albumWriter);
-        FileWriter output = new FileWriter(csvName); //Create empty file with the file name
+        FileWriter output = new FileWriter(dataPath("")+ "/" + csvName); //Create empty file with the file name
         aW.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
         aW.close();
         output.close();
@@ -53,12 +53,12 @@ class Backend {
   ArrayList<String> getAL(String albumName) {
     albumName += ".csv"; // file extensino
     ArrayList<String> album = new ArrayList<String>(); // arraylist to return
-    File csv = new File(albumName); 
+    File csv = new File(dataPath(""), "/" + albumName); 
     if (! csv.exists()) { // checks if file exists
       println("Error: File Does Not Exist");
       return album;
     } else { // use Scanner to read and split urls, since it is all on one line
-      Scanner inputStream = new Scanner(albumName);
+      Scanner inputStream = new Scanner(dataPath("") + "/" + albumName);
       while (inputStream.hasNext()) {
         String line = inputStream.next();
         String[] urls = line.split(",");
@@ -73,13 +73,13 @@ class Backend {
 
   //Adds an image by url
   void add(String url, String albumName) {
-    File f = new File(albumName);
+    File f = new File(dataPath(""),"/" + albumName);
     if (! f.exists()) { // checks for file existence
       println("Error: Input File does not exist");
       return;
     } else { // if file exists, just add new url to appropriate csv file
       try {
-        FileWriter fw = new FileWriter(albumName, true);
+        FileWriter fw = new FileWriter(dataPath("") + "/" + albumName, true);
         fw.write(url + ",");
         fw.close();
       }
@@ -96,7 +96,7 @@ class Backend {
     if (! f.exists()) {
       println("Error: File Does Not Exist");
     } else {
-      Scanner inputStream = new Scanner(albumName);
+      Scanner inputStream = new Scanner(dataPath("") + "/" + albumName);
       while (inputStream.hasNext()) {
         String line = inputStream.next();
         String[] urls = line.split(",");
@@ -108,7 +108,7 @@ class Backend {
       }
       inputStream.close();
       try {
-        FileWriter writer = new FileWriter(albumName);
+        FileWriter writer = new FileWriter(dataPath("") + "/" + albumName);
         BufferedWriter output = new BufferedWriter(writer);
         for (int i = 0; i < newAlbum.size(); i++) {
           output.write(newAlbum.get(i) + ",");
