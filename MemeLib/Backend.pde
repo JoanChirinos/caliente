@@ -16,33 +16,34 @@ class Backend {
     int m = month();
     int y = year();
     int hr = hour();
-    int min = minute();
-    String csvName = inp + ".csv";
-    File file = new File(csvName);
+    int min = minute();  
     File albumFile = new File("album.csv");
     if (! albumFile.exists()) {
-      try {
-        FileWriter newAlbumFile = new FileWriter("album.csv");
-        newAlbumFile.close();
-      }
-      catch(IOException e) {
-        println("Error: Failed to create album.csv");
-      }
-    }
-    if ( file.exists()) {
-      println("Error: File Already Exists");
+      PrintWriter temp = createWriter("album.csv");
+      temp.println(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
+      temp.close();
+      PrintWriter csv = createWriter(inp + ".csv");
+      temp.close();
     } else {
+      FileWriter output = null;
+      PrintWriter csv = createWriter(inp + ".csv");
       try {
-        FileWriter albumWriter = new FileWriter("album.csv", true);
-        BufferedWriter aW = new BufferedWriter(albumWriter);
-        FileWriter output = new FileWriter(csvName); //Create empty file with the file name
-        aW.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
-        aW.close();
-        output.close();
+        output = new FileWriter("album.csv", true); //the true will append the new data
+        output.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
       }
       catch (IOException e) {
         println("It Broke");
         e.printStackTrace();
+      }
+      finally {
+        if (output != null) {
+          try {
+            output.close();
+          } 
+          catch (IOException e) {
+            println("Error while closing the writer");
+          }
+        }
       }
     }
   }
