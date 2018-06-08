@@ -145,7 +145,7 @@ class Albums {
   }
 
   void populateAlbumList() {
-    String[] lines = loadStrings("album.csv");
+    String[] lines = loadStrings(sketchPath() + "album.csv");
     for (String s : lines) {
       if (!s.equals("")) albumList.add(s.split(","));
     }
