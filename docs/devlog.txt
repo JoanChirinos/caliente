@@ -38,6 +38,9 @@ Files are read from root directory instead of current directory, so it was overc
 The GUI was a huge pain to implements and required a lot of work and logic, but eventually
 Joan got it done.
 
+It seems that our sketch had issues dealing with file pathing based on the way we created it. The workaround was to give it a path
+using an unreferenced function called dataPath(String) in processing. 
+
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We will be unable to have a draw function where the user can draw a picture and export the image file.
