@@ -6,11 +6,13 @@ import java.io.*;
 import java.util.Scanner;
 
 class Backend {
-  boolean shuffle;
-  boolean repeat;
-  boolean pause;
+  
+  // Variables 
+  boolean shuffle; // state of shuffling
+  boolean repeat; // state of repeating
+  boolean pause; // state of pause
 
-  //Creates a new .csv file to store files 
+  //Creates a new .csv file to store files, and creates an album.csv file to store all album names 
   void makeAlbum(String inp) {
     int d = day();
     int m = month();
@@ -20,7 +22,7 @@ class Backend {
     String csvName = inp + ".csv";
     File file = new File(csvName);
     File albumFile = new File("album.csv");
-    if (! albumFile.exists()) {
+    if (! albumFile.exists()) { // checks of album.csv exists, if not, create it 
       try {
         FileWriter newAlbumFile = new FileWriter("album.csv");
         newAlbumFile.close();
@@ -31,7 +33,7 @@ class Backend {
     }
     if ( file.exists()) {
       println("Error: File Already Exists");
-    } else {
+    } else { // if album.csv exists, just write to it the name album name
       try {
         FileWriter albumWriter = new FileWriter("album.csv", true);
         BufferedWriter aW = new BufferedWriter(albumWriter);
@@ -49,13 +51,13 @@ class Backend {
 
   //Return an ArrayList filled with urls from a csv file
   ArrayList<String> getAL(String albumName) {
-    albumName += ".csv";
-    ArrayList<String> album = new ArrayList<String>();
-    File csv = new File(albumName);
-    if (! csv.exists()) {
+    albumName += ".csv"; // file extensino
+    ArrayList<String> album = new ArrayList<String>(); // arraylist to return
+    File csv = new File(albumName); 
+    if (! csv.exists()) { // checks if file exists
       println("Error: File Does Not Exist");
       return album;
-    } else {
+    } else { // use Scanner to read and split urls, since it is all on one line
       Scanner inputStream = new Scanner(albumName);
       while (inputStream.hasNext()) {
         String line = inputStream.next();
@@ -72,10 +74,10 @@ class Backend {
   //Adds an image by url
   void add(String url, String albumName) {
     File f = new File(albumName);
-    if (! f.exists()) {
+    if (! f.exists()) { // checks for file existence
       println("Error: Input File does not exist");
       return;
-    } else {
+    } else { // if file exists, just add new url to appropriate csv file
       try {
         FileWriter fw = new FileWriter(albumName, true);
         fw.write(url + ",");
@@ -119,15 +121,15 @@ class Backend {
     }
   }
 
-  // Plays album slideshow
+  // Plays album slideshow. Each time shuffle/repeat is clicked, play will be invoked again
   void play(ArrayList<String> inp) {
-    int size = inp.size();
-    ArrayList<String> temp = clone(inp);
-    ArrayList<String> shuf = new ArrayList<String>();
-    int counter = 0;
+    int size = inp.size(); // number of images
+    ArrayList<String> temp = clone(inp); // make a copy of input without modifying it
+    ArrayList<String> shuf = new ArrayList<String>(); // temporary arraylist to store random elements
+    int counter = 0; // counter for when to play a random song
 
-    if (pause == false) {
-      if (shuffle && repeat) {
+    if (pause == false) { // if pause state is false, then proceed to methods
+      if (shuffle && repeat) { 
         while (shuffle && repeat) { // if both shuffle and repeat are toggled
           int rand = (int) (Math.random() * size + 1); // random integer in the range of 0 - input arraylist size
           int rand2 = (int) (Math.random() * shuf.size() + 1); // random integer in the range of 0 - shuffled arraylist size
@@ -173,7 +175,7 @@ class Backend {
     }
   }
 
-  // Clones an arraylist
+  // Clones an arraylist without modifying original
   ArrayList<String> clone(ArrayList<String> inp) {
     ArrayList<String> temp = new ArrayList<String>();
     for (String i : inp) temp.add(i);
