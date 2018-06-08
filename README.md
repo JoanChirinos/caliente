@@ -17,7 +17,8 @@ Our project will implement data structures taught during the APCS course, such a
 Our project will entail making a GUI/functional UI for the user in order to click buttons and function. This will be done using Java Swing/GUI. If this proves to be too difficult, we will try to implement an UI with a different approach.
 
 ### Extend
-Our project requires us to gather large amounts of image files, and we will need to learn how to use Java Swing to implement the UI.
+Our project requires more extensive knowledge and practice of processing than
+what we have accomplished in class
 
 # How It Works
 Our project uses Processing to create a UI in which a user can click designated buttons which have the function of doing the task illustrated in the project description. We use mouseClick() in conjunction with the coordinate system of the window to determine where the user clicks and thus which functionality to procure. In the backend, our project uses ArrayLists as means of create albums and adding images to an album. Each album is a separate csv of urls, and when play is clicked, it will start from the beginning and goes to the end. Shuffle/repeat are toggles that switch the order of and repeat the iterance of that designated ArrayList. We use another class called Backend.java to implement importing and exporting of images. Additionally, we will have a draw and export functionality with will use Processing to draw an image by using the coordinates of the window and draw(), which we will then allow the exportation of. One of the biggest extensions of our project involves the processing of files like csv files and working with a smooth UI that transitions per button pressed.
