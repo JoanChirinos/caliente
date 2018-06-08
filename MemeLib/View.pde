@@ -1,3 +1,8 @@
+// caliente: Aaron Li, Joan Chirinos, George Liang
+// APCS2 pd8
+// Final Project
+// 06/08/18
+
 class View {
 
   final color backgroundColor = color(226, 237, 255);
@@ -78,8 +83,8 @@ class View {
     else drawButton("<<", 20, 134, 645, 100, 50, white);
 
     if (play) {
-      if (isHovering(250, 645, 100, 50)) drawButton("Pause", 20, 250, 645, 100, 50, hoverColor);
-      else drawButton("Pause", 20, 250, 645, 100, 50, white);
+      if (isHovering(250, 645, 100, 50)) drawButton("Stop", 20, 250, 645, 100, 50, hoverColor);
+      else drawButton("Stop", 20, 250, 645, 100, 50, white);
     } else {
       if (isHovering(250, 645, 100, 50)) drawButton("Play", 20, 250, 645, 100, 50, hoverColor);
       else drawButton("Play", 20, 250, 645, 100, 50, white);
@@ -128,6 +133,8 @@ class View {
       repeat = !repeat;
     } else if (isHovering(250, 645, 100, 50)) {
       play = !play;
+      indexAt = 0;
+      indexSet = true;
     }
     
     else if (isHovering(134, 645, 100, 50)) {

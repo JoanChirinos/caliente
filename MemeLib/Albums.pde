@@ -1,3 +1,8 @@
+// caliente: Aaron Li, Joan Chirinos, George Liang
+// APCS2 pd8
+// Final Project
+// 06/08/18
+
 class Albums {
   final color backgroundColor = color(226, 237, 255);
   final color buttonColor = color(255, 163, 163);

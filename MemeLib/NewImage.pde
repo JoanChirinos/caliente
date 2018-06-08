@@ -1,3 +1,8 @@
+// caliente: Aaron Li, Joan Chirinos, George Liang
+// APCS2 pd8
+// Final Project
+// 06/08/18
+
 import java.awt.datatransfer.*;
 import java.awt.Toolkit; 
 
@@ -104,6 +109,13 @@ class NewImage {
 }
 
 // CLIPHELPER OBJECT CLASS:
+// //////////////////
+// Clipboard class for Processing
+// by seltar, modified by adamohern
+// v 0115AO
+// only works with programs. applets require signing
+// https://processing.org/discourse/beta/num_1274718629.html
+// we (Joan, Aaron, and George) claim no credit for this wonderful tool
 
 class ClipHelper {
   Clipboard clipboard;

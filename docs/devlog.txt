@@ -33,11 +33,21 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Files are read from root directory instead of current directory, so it was overcome by placing files in root instead of current directory. 
+Files are read from root directory instead of current directory, so it was overcome by placing files in root instead of current directory.
+
+The GUI was a huge pain to implements and required a lot of work and logic, but eventually
+Joan got it done.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We will be unable to have a draw function where the user can draw a picture and export the image file.
+
+The play button resumes from the beginning of the slideshow
+
+There is no way for the user to set their own delay between images
+
+Typing in processing doesn't like to cooperate with users. Thankfully, we implemented
+Reading from the clipboard (we also cited this because we didn't write it ourselves)
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,6 +56,8 @@ if a File even exists in current Directory.
 
 There were several Processing methods that were very helpful as well, such as createWriter and createReader. The login and work
 that goes into planning a UI is very intensive.
+
+We learned the degree of logic needed to make the GUI flow smoothly
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,6 +73,7 @@ LESSONS LEARNED
 * the Java API is very helpful
 * always pull before pushing
 * know what you're doing before you implement it
+* make sure to always be on the same page
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -85,7 +98,7 @@ yyyy-mm-dd
 
 2018-05-31
 George :: Drafted our team's first plan, pushed revised proposal, and linked submodule.
-Aarron :: Updated README.md
+Aaron :: Updated README.md
 2018-06-01
 Joan :: Created Flow.pdf
 George:: Created UML.pdf
