@@ -7,6 +7,8 @@ class View {
   final color white = color(255, 255, 255);
   
   boolean imageWasDrawn = false;
+  boolean imageBackgroundWasDrawn = false;
+  boolean hasSetUp = false;
   
   boolean shuffle, repeat;
   
@@ -18,8 +20,12 @@ class View {
   //Main Screen
 
   void setup() {
-    background(backgroundColor);
-    textAlign(CENTER, CENTER);
+    if (!hasSetUp) {
+      imageMode(CENTER);
+      background(backgroundColor);
+      textAlign(CENTER, CENTER);
+      hasSetUp = true;
+    }
   }
   
   void setAlbum(String fName) {
@@ -28,6 +34,7 @@ class View {
   }
 
   void drawOne() {
+    println(urlList);
     textAlign(LEFT, CENTER);
     drawText("Album: " + fileName, 20, 115, 25, 350, 35);
     textAlign(CENTER, CENTER);
@@ -41,20 +48,23 @@ class View {
     else drawButton("Add image", 20, 475, 25, 100, 35, buttonColor);
     
     //image area
-    drawButton("", 1, 20, 75, 560, 560, white);
+    if (!imageBackgroundWasDrawn) {
+      drawButton("", 1, 20, 75, 560, 560, white);
+      imageBackgroundWasDrawn = true;
+    }
     
     //shuffle, back, play, forward, repeat
     //100 wide, 15 gutter, +1 on each side
-    drawButton("Shuffle", 20, 16, 570, 100, 50, white);
+    drawButton("Shuffle", 20, 18, 645, 100, 50, white);
     
-    drawButton("<<", 20, 131, 570, 100, 50, white);
+    drawButton("<<", 20, 134, 645, 100, 50, white);
     
-    drawButton("Play", 20, 246, 570, 100, 50, white);
+    drawButton("Play", 20, 250, 645, 100, 50, white);
     
-    drawButton(">>", 20, 361, 570, 100, 50, white);
+    drawButton(">>", 20, 365, 645, 100, 50, white);
     
-    drawButton("Repeat", 20, 476, 570, 100, 50, white);
-    
+    drawButton("Repeat", 20, 482, 645, 100, 50, white);
+
     if (!imageWasDrawn) {
       drawImage();
       imageWasDrawn = true;
@@ -68,7 +78,7 @@ class View {
       imageWasDrawn = false;
       return "back";
     }
-    else if (isHovering(575, 25, 100, 35)) {
+    else if (isHovering(475, 25, 100, 35)) {
       imageWasDrawn = false;
       return fileName + ".csv";
     }
@@ -80,29 +90,31 @@ class View {
     if (urlList.size() == 0) {
       return;
     }
+    println("trynna load:\n" + urlList.get(indexAt).split(",")[0]);
     try {
-      PImage image = loadImage(urlList.get(indexAt));
+      println("loading image");
+      PImage image = loadImage(urlList.get(indexAt).split(",")[0]);
       
       if (image.width > 560 || image.height > 560) {
-        float scale = min(860.0 / image.width, 860.0 / image.height);
-        image.resize(int(image.width * scale), int(image.height * scale));
+        float scale = min(560.0 / image.width, 560.0 / image.height);
+        image.resize(int(image.width * scale) - 1, int(image.height * scale) - 1);
       }
-      
+      image(image, 300, 355);
     }
     catch (NullPointerException npe) {
       println("couldn't load that image. skipping");
       indexAt = (indexAt + 1) % urlList.size();
     }
-    /*catch (Exception e) {
+    catch (Exception e) {
       println("something else went seriously wrong in view");
-    }*/
+    }
   }
   
   void loadURLs() {
     urlList = new ArrayList<String>();
     String[] urls = loadStrings(fileName + ".csv");
     for (String url : urls) {
-      urlList.add(url);
+      urlList.add(url.split(",")[0]);
     }
   }
     

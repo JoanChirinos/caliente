@@ -28,11 +28,9 @@ class Main {
   }
 
   String onMouseClick() {
-    if (isHovering(50, 75, 500, 200)) {
-      return "all";
-    } else if (isHovering(50, 250, 500, 200)) {
+    if (isHovering(50, 350, 500, 150)) {
       return "albums";
-    } else if (isHovering(50, 475, 500, 200)) {
+    } else if (isHovering(50, 525, 500, 150)) {
       return "exit";
     }
     return "";

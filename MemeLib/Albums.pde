@@ -158,11 +158,9 @@ class Albums {
   //info should be [name, dateCreated, numberOfPics]
   void drawAlbumTab(String[] info, float x, float y, float w, float h) {
     float nameWidth = w * 0.6;
-    float dateWidth = w * 0.2;
-    float numberWidth = w * 0.2;
+    float dateWidth = w * 0.4;
     drawButton(info[0], 10, x, y, nameWidth, h, white);
     drawButton(info[1], 10, x + nameWidth, y, dateWidth, h, white);
-    drawButton(info[2], 10, x + nameWidth + dateWidth, y, numberWidth, h, white);
   }
 
 

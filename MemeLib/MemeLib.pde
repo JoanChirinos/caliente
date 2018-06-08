@@ -82,11 +82,13 @@ void mouseClicked() {
     }
   } else if (state == VIEW_SCREEN) {
     ret = v.onMouseClick();
+    println(ret);
     if (ret.equals("back")) {
       state = ALBUMS_SCREEN;
     }
     else if (!ret.equals("")) {
       ni.setCSV(ret);
+      ni.setup();
       state = NEW_IMAGE_SCREEN;
     }
   } else if (state == NEW_ALBUM_SCREEN) {
