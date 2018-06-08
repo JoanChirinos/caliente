@@ -63,16 +63,12 @@ class Albums {
     color hc = color(220, 220, 220);
 
     //backPage
-    if (isHovering(50, 625, 150, 50)) drawButton("<<", 20, 50, 625, 150, 50, hc);
-    else drawButton("<<", 20, 50, 625, 150, 50, white);
-
-    //select
-    if (isHovering(225, 625, 150, 50)) drawButton("Select", 20, 225, 625, 150, 50, hc);
-    else drawButton("Select", 20, 225, 625, 150, 50, white);
+    if (isHovering(50, 625, 250, 50)) drawButton("Previous page", 20, 50, 625, 250, 50, hc);
+    else drawButton("Previous page", 20, 50, 625, 250, 50, white);
 
     //forwardPage
-    if (isHovering(400, 625, 150, 50)) drawButton(">>", 20, 400, 625, 150, 50, hc);
-    else drawButton(">>", 20, 400, 625, 150, 50, white);
+    if (isHovering(300, 625, 250, 50)) drawButton("Next page", 20, 300, 625, 250, 50, hc);
+    else drawButton("Next page", 20, 300, 625, 250, 50, white);
 
     //album selection label
     drawText(albumSelectionTabLabel, 30, 50, 100, 500, 50);
@@ -99,10 +95,10 @@ class Albums {
     } else if (isHovering(380, 25, 195, 50)) {
       hasSetUpAlready = false;
       return "newAlbum";
-    } else if (isHovering(50, 625, 150, 50) && albumPage > 0) {
+    } else if (isHovering(50, 625, 250, 50) && albumPage > 0) {
       albumPage--;
       drawAlbums();
-    } else if (isHovering(400, 625, 150, 50) && (albumPage + 1) * 19 < albumList.size()) {
+    } else if (isHovering(300, 625, 250, 50) && (albumPage + 1) * 19 < albumList.size()) {
       println("page " + albumPage + ", aLsize: " + albumList.size());
       albumPage++;
       drawAlbums();
@@ -117,6 +113,7 @@ class Albums {
     for (int i = 0; i < albumList.size() && i < 19; i++) {
       if (i + albumPage * 19 < albumList.size() && isHovering(50, 150 + i * 25, 500, 25)) {
         println("hovering over " + i);
+        hasSetUpAlready = false;
         return (albumList.get(i + albumPage * 19)[0]);
       }
     }
@@ -144,6 +141,17 @@ class Albums {
 
   void populateAlbumList() {
     //temporary sample
+    File f = new File("album.csv");
+    if (!f.exists()) {
+      try {
+        FileWriter albumWriter = new FileWriter("album.csv", true);
+        BufferedWriter aW = new BufferedWriter(albumWriter);
+        aW.close();
+      }
+      catch (IOException ioe) {
+        println("hmm couldn't write the main album file. there goes our grade");
+      }
+    }
     String[] lines = loadStrings("album.csv");
     for (String s : lines) {
       if (!s.equals("")) albumList.add(s.split(","));

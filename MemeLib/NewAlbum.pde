@@ -60,9 +60,9 @@ class NewAlbum {
       b.makeAlbum(currentName);
       println("clicked");
       hasSetUpAlready = false;
-      //return currentName;
+      return currentName;
     }
-    return "";
+    else return "";
   }
   
   void drawButton(String text, float textSize, float x, float y, float w, float h, color c) {

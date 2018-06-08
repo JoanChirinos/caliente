@@ -5,6 +5,8 @@ class View {
   final color buttonColorHover = color(255, 209, 209);
   final color textColor = color(0, 0, 0);
   
+  boolean imageWasDrawn = false;
+  
   String fileName;
   
   ArrayList<String> urlList;
@@ -22,11 +24,34 @@ class View {
   }
 
   void drawOne() {
-    drawText("Album: " + fileName, 20, 25, 25, 550, 40);
+    textAlign(LEFT, CENTER);
+    drawText("Album: " + fileName, 20, 115, 25, 475, 35);
+    textAlign(CENTER, CENTER);
+    
+    //back button
+    if (isHovering(25, 25, 75, 35)) drawButton("Back", 20, 25, 25, 75, 35, buttonColorHover);
+    else drawButton("Back", 20, 25, 25, 75, 35, buttonColor);
+    
+    //image area
+    drawButton("", 1, 20, 75, 560, 560, color(255, 255, 255));
+    
+    if (!imageWasDrawn) {
+      drawImage();
+      imageWasDrawn = true;
+    }
+    
   }
   
   String onMouseClick() {
+    //back button
+    if (isHovering(25, 25, 75, 35)) {
+      return "back";
+    }
     return "";
+  }
+  
+  void drawImage() {
+    
   }
   
   void loadURLs() {
