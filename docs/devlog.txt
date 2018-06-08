@@ -33,16 +33,19 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Wow, we so BOSS bc...>
+Files are read from root directory instead of current directory, so it was overcome by placing files in root instead of current directory. 
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+We will be unable to have a draw function where the user can draw a picture and export the image file.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We learned a lot about using FileWriters and also createWriter in processing. We utilized Java's File class to check 
 if a File even exists in current Directory.
+
+There were several Processing methods that were very helpful as well, such as createWriter and createReader. The login and work
+that goes into planning a UI is very intensive.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,9 +53,14 @@ A lot of our methods started out with no parameters because we didn't realize wh
 Eventually, with a lot of sketching and note writing we came to the conclusion that some methods needed parameters for
 filename ontop of just a String that represented url.
 
+Originally, we planned to use Deques to implement the play slideshow functionality. However, we have come to realize that 
+ArrayLists are actually the better data-structure since one can easily expand the ArrayList without worrying about it.
+
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<tales of wisdom gained...>
+* the Java API is very helpful
+* always pull before pushing
+* know what you're doing before you implement it
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
