@@ -8,7 +8,7 @@ import java.util.Scanner;
 class Backend {
   boolean shuffle;
   boolean repeat;
-
+  boolean pause;
 
   //Creates a new .csv file to store files 
   void makeAlbum(String inp) {
@@ -20,12 +20,12 @@ class Backend {
     String csvName = inp + ".csv";
     File file = new File(csvName);
     File albumFile = new File("album.csv");
-    if (! albumFile.exists()){
-      try{
+    if (! albumFile.exists()) {
+      try {
         FileWriter newAlbumFile = new FileWriter("album.csv");
         newAlbumFile.close();
       }
-      catch(IOException e){
+      catch(IOException e) {
         println("Error: Failed to create album.csv");
       }
     }
@@ -119,6 +119,66 @@ class Backend {
     }
   }
 
+  // Plays album slideshow
+  void play(ArrayList<String> inp) {
+    int size = inp.size();
+    ArrayList<String> temp = clone(inp);
+    ArrayList<String> shuf = new ArrayList<String>();
+    int counter = 0;
+
+    if (pause == false) {
+      if (shuffle && repeat) {
+        while (shuffle && repeat) { // if both shuffle and repeat are toggled
+          int rand = (int) (Math.random() * size + 1); // random integer in the range of 0 - input arraylist size
+          int rand2 = (int) (Math.random() * shuf.size() + 1); // random integer in the range of 0 - shuffled arraylist size
+          if (counter % (int) (size * 0.1) == 0) {
+            displayImage(shuf.get(0));
+            delay(3000);
+            temp.add(rand, shuf.remove(0));
+          } else {
+            displayImage(temp.get(0));
+            delay(3000);
+            shuf.add(rand2, temp.remove(0));
+          }
+          counter++;
+        }
+      } else if (shuffle) { // if shuffled is toggled
+        temp = clone(inp);
+        shuf = new ArrayList<String>();
+        int rand = (int) (Math.random() * size + 1); // random integer in the range of 0 - input arraylist size
+        int rand2 = (int) (Math.random() * shuf.size() + 1); // random integer in the range of 0 - shuffled arraylist size
+        for (int i = 0; i < size; i++) {
+          shuf.add(rand2, temp.remove(rand));
+        } 
+        while (shuf.size() >= 0) {
+          displayImage(shuf.get(0));
+          delay(3000);
+          shuf.remove(0);
+        }
+      } else if (repeat) { // if repeat is toggled
+        temp = clone(inp);
+        while (repeat) {
+          displayImage(temp.get(0));
+          delay(3000);
+          temp.add(temp.remove(0));
+        }
+      } else { // if nothing is toggled, simply play through album and be done
+        temp = clone(inp);
+        while (temp.size() >= 0) {
+          displayImage(temp.get(0));
+          delay(3000);
+          temp.remove(0);
+        }
+      }
+    }
+  }
+
+  // Clones an arraylist
+  ArrayList<String> clone(ArrayList<String> inp) {
+    ArrayList<String> temp = new ArrayList<String>();
+    for (String i : inp) temp.add(i);
+    return temp;
+  }
   //Skips to next image in album
   void skip() {
   }
@@ -130,7 +190,7 @@ class Backend {
   //Displays image in the image screen given the img's url
   void displayImage(String url) {
     PImage img = loadImage(url);
-    image(img,0,0,600,800);
+    image(img, 0, 0, 600, 800);
   }
 
   //Plays the slideshow in the album by following Deque order
