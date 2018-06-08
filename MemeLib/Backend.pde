@@ -74,7 +74,6 @@ class Backend {
 
   //Adds an image by url
   void add(String url, String albumName) {
-    albumName += ".csv";
     File f = new File(albumName);
     if (! f.exists()) {
       println("Error: Input File does not exist");

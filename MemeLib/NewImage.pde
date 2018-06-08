@@ -39,8 +39,8 @@ class NewImage {
     drawButton(currentURL, 35, 50, 110, 500, 100, white);
     textAlign(CENTER, CENTER);
 
-    if (isHovering(350, 325, 100, 50)) drawButton("Okay", 30, 350, 325, 100, 50, color(220, 220, 220));
-    else drawButton("Okay", 30, 350, 325, 100, 50, white);
+    if (isHovering(450, 325, 100, 50)) drawButton("Okay", 30, 450, 325, 100, 50, color(220, 220, 220));
+    else drawButton("Okay", 30, 450, 325, 100, 50, white);
 
     drawText("Enter the word \"paste\" to paste from your clipboard", 15, 50, 285, 500, 50);
 
@@ -70,7 +70,7 @@ class NewImage {
   }
 
   String onMouseClick() {
-    if (isHovering(350, 325, 100, 50) && !currentURL.equals("")) {
+    if (isHovering(450, 325, 100, 50) && !currentURL.equals("")) {
       println("current csv: " + currentCSV + "\ncurrentURL: " + currentURL);
       b.add(currentURL, currentCSV);
       println("clicked");
