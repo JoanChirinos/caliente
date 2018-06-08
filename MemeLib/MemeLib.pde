@@ -19,10 +19,10 @@ NewAlbum n;
 NewImage ni;
 
 void setup() {
-  File f = new File(sketchPath() + "/album.csv");
+  File f = new File(sketchPath() + "/data/album.csv");
   if (!f.exists()) {
     try {
-      FileWriter albumWriter = new FileWriter(sketchPath() + "album.csv", true);
+      FileWriter albumWriter = new FileWriter(sketchPath() + "/data/album.csv", true);
       BufferedWriter aW = new BufferedWriter(albumWriter);
       aW.close();
     }

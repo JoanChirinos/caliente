@@ -226,7 +226,7 @@ class View {
 
   void loadURLs() {
     urlList = new ArrayList<String>();
-    String[] urls = loadStrings(sketchPath() + fileName + ".csv");
+    String[] urls = loadStrings(sketchPath() + "/data/" + fileName + ".csv");
     for (String x : urls) {
       for (String url : x.split(",")) {
         if (!url.equals("")) urlList.add(url);

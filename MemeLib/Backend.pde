@@ -20,11 +20,11 @@ class Backend {
     int hr = hour();
     int min = minute();  
     String csvName = inp + ".csv";
-    File file = new File(sketchPath() + csvName);
-    File albumFile = new File(sketchPath() + "album.csv");
+    File file = new File(sketchPath() + "/data/" + csvName);
+    File albumFile = new File(sketchPath() + "/data/album.csv");
     if (! albumFile.exists()) { // checks of album.csv exists, if not, create it 
       try {
-        FileWriter newAlbumFile = new FileWriter(sketchPath() + "album.csv");
+        FileWriter newAlbumFile = new FileWriter(sketchPath() + "/data/album.csv");
         newAlbumFile.close();
       }
       catch(IOException e) {        
@@ -35,9 +35,9 @@ class Backend {
       println("Error: File Already Exists");
     } else { // if album.csv exists, just write to it the name album name
       try {
-        FileWriter albumWriter = new FileWriter(sketchPath() + "album.csv", true);
+        FileWriter albumWriter = new FileWriter(sketchPath() + "/data/album.csv", true);
         BufferedWriter aW = new BufferedWriter(albumWriter);
-        FileWriter output = new FileWriter(sketchPath() + csvName); //Create empty file with the file name
+        FileWriter output = new FileWriter(sketchPath() + "/data/" + csvName); //Create empty file with the file name
         aW.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
         aW.close();
         output.close();
@@ -53,12 +53,12 @@ class Backend {
   ArrayList<String> getAL(String albumName) {
     albumName += ".csv"; // file extensino
     ArrayList<String> album = new ArrayList<String>(); // arraylist to return
-    File csv = new File(sketchPath() + albumName); 
+    File csv = new File(sketchPath() + "/data/" + albumName); 
     if (! csv.exists()) { // checks if file exists
       println("Error: File Does Not Exist");
       return album;
     } else { // use Scanner to read and split urls, since it is all on one line
-      Scanner inputStream = new Scanner(sketchPath() + albumName);
+      Scanner inputStream = new Scanner(sketchPath() + "/data/" + albumName);
       while (inputStream.hasNext()) {
         String line = inputStream.next();
         String[] urls = line.split(",");
