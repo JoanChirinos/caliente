@@ -4,12 +4,14 @@ final int MAIN_SCREEN = 0;
 final int ALBUMS_SCREEN = 1;
 final int VIEW_SCREEN = 2;
 final int NEW_ALBUM_SCREEN = 3;
+final int NEW_IMAGE_SCREEN = 4;
 
 int state;
 Main m;
 Albums a;
 View v;
 NewAlbum n;
+NewImage ni;
 
 void setup() {
   File f = new File("album.csv");
@@ -31,6 +33,7 @@ void setup() {
   a = new Albums();
   v = new View();
   n = new NewAlbum();
+  ni = new NewImage();
 }
 
 void draw() {
@@ -46,6 +49,10 @@ void draw() {
   } else if (state == NEW_ALBUM_SCREEN) {
     n.setup();
     n.drawOne();
+  }
+  else if (state == NEW_IMAGE_SCREEN) {
+    ni.setup();
+    ni.drawOne();
   }
   //println(mouseX + ", " + mouseY);
 }
@@ -78,13 +85,22 @@ void mouseClicked() {
     if (ret.equals("back")) {
       state = ALBUMS_SCREEN;
     }
+    else if (!ret.equals("")) {
+      ni.setCSV(ret);
+      state = NEW_IMAGE_SCREEN;
+    }
   } else if (state == NEW_ALBUM_SCREEN) {
     ret = n.onMouseClick();
     if (!ret.equals("")) {
       v.setAlbum(ret);
       state = VIEW_SCREEN;
     }
-    else state = MAIN_SCREEN;
+  }
+  else if (state == NEW_IMAGE_SCREEN) {
+    ret = ni.onMouseClick();
+    if (ret.equals("done")) {
+      state = VIEW_SCREEN;
+    }
   }
 }
 

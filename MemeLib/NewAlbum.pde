@@ -22,7 +22,7 @@ class NewAlbum {
       currentName = "";
       
       hasSetUpAlready = true;
-      keyPressDelay = 0;
+      keyPressDelay = 7;
       b = new Backend();
     }
   }
@@ -38,31 +38,35 @@ class NewAlbum {
     
     drawText("Only letters and numbers please", 15, 50, 210, 500, 50);
     
+    if (keyPressed) {
+      keyPressDelay--;
+    }
+    
     if (keyPressDelay == 0 && keyPressed) {
-      keyPressDelay = 5;
+      keyPressDelay = 7;
       char k = key;
       
       if (k == BACKSPACE) {
         if (currentName.length() > 0) currentName = currentName.substring(0, currentName.length() - 1);
       }
-      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k))) {
+      else if (currentName.length() <= 15 && (Character.isLetter(k) || Character.isDigit(k))) {
         currentName += key;
       }
     }
-    else if (keyPressDelay > 0) {
+    else if (keyPressDelay > 1) {
       keyPressDelay--;
       println(keyPressDelay);
     }
   }
   
   String onMouseClick() {
-    if (isHovering(450, 170, 100, 50)) {
+    if (isHovering(450, 170, 100, 50) && !currentName.equals("album") && !currentName.equals("")) {
       b.makeAlbum(currentName);
       println("clicked");
       hasSetUpAlready = false;
       return currentName;
     }
-    else return "";
+    else  return "";
   }
   
   void drawButton(String text, float textSize, float x, float y, float w, float h, color c) {
