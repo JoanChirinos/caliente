@@ -10,7 +10,7 @@ class View {
   boolean imageBackgroundWasDrawn = false;
   boolean hasSetUp = false;
 
-  boolean shuffle, repeat, play = false;
+  boolean shuffle, repeat, play, indexSet = false;
 
   String fileName;
 
@@ -42,7 +42,7 @@ class View {
   }
 
   void drawOne() {
-    println(play);
+    //println(play);
     if (play) {
       tickCounter--;
     } else {
@@ -94,6 +94,10 @@ class View {
     if (tickCounter == 0) {
       imageWasDrawn = false;
     }
+    
+    if (!play) {
+      copy();
+    }
 
     if (!imageWasDrawn && play) {
       drawImage();
@@ -101,7 +105,7 @@ class View {
       tickCounter = 300;
     }
 
-    println(tickCounter);
+    //println(tickCounter);
   }
 
   String onMouseClick() {
@@ -125,43 +129,79 @@ class View {
     } else if (isHovering(250, 645, 100, 50)) {
       play = !play;
     }
+    
+    else if (isHovering(134, 645, 100, 50)) {
+      indexAt--;
+      if (indexAt < 0) {
+        indexAt = urlList.size() - 1;
+      }
+      println(indexAt);
+      indexSet = true;
+      drawImage();
+    }
+    
+    else if (isHovering(365, 645, 100, 50)) {
+      indexAt++;
+      if (indexAt == urlList.size()) {
+        indexAt = 0;
+      }
+      println(indexAt);
+      indexSet = true;
+      drawImage();
+    }
     return "";
   }
 
+  boolean setIndex() {
+    if (shuffle && repeat) {
+      indexAt = (int)(random(urlList.size()));
+    }
+    
+    else if (shuffle) {
+      println(urlListForShuffle);
+      if (urlListForShuffle.size() == 0) {
+        copy();
+        println(urlListForShuffle);
+        println("finished the shuffle");
+        play = false;
+        return false;
+      }
+      indexAt = (int)(random(urlListForShuffle.size()));
+      urlListForShuffle.remove(indexAt);
+    }
+    
+    else if (repeat) {
+      indexAt = (indexAt + 1) % urlList.size();
+    }
+    
+    else {
+      if (indexAt == urlList.size() - 1) {
+        play = false;
+        indexAt = -1;
+        return false;
+      }
+      else {
+        indexAt++;
+      }
+    }
+    
+    return true;
+  }
+
   void drawImage() {
+    drawButton("", 1, 20, 75, 560, 560, white);
+    println(indexSet);
     //kinda dont wanna mess with an empty urlList
     if (urlList.size() == 0) {
       return;
     }
     try {
-      PImage image = loadImage(urlList.get(0).split(",")[0]);
-      ;
-      println("loading image");
-      if (shuffle && repeat) {
-        indexAt = (int)(random(urlList.size()));
-        image = loadImage(urlList.get(indexAt).split(",")[0]);
-      } else if (shuffle) {
-        if (urlListForShuffle.size() == 0) {
-          copy();
-          play = false;
+      if (!indexSet) {
+        if (!setIndex()) {
           return;
         }
-        indexAt = (int)(random(urlListForShuffle.size()));
-        image = loadImage(urlList.get(indexAt).split(",")[0]);
-        urlListForShuffle.remove(indexAt);
-      } else if (repeat) {
-        indexAt = (indexAt + 1) % urlList.size();
-      } else {
-        indexAt++;
-        if (indexAt == urlList.size() - 1) {
-          play = false;
-          indexAt = -1;
-          return;
-        }
-        image = loadImage(urlList.get(indexAt).split(",")[0]);
-      }
-
-
+      } else indexSet = false;
+      PImage image = loadImage(urlList.get(indexAt).split(",")[0]);
       if (image.width > 560 || image.height > 560) {
         float scale = min(560.0 / image.width, 560.0 / image.height);
         image.resize(int(image.width * scale) - 1, int(image.height * scale) - 1);
