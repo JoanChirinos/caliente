@@ -45,7 +45,7 @@ class NewAlbum {
       if (k == BACKSPACE) {
         if (currentName.length() > 0) currentName = currentName.substring(0, currentName.length() - 1);
       }
-      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k)) || k == ' ') {
+      else if (currentName.length() <= 20 && (Character.isLetter(k) || Character.isDigit(k))) {
         currentName += key;
       }
     }
@@ -59,8 +59,9 @@ class NewAlbum {
     if (isHovering(450, 170, 100, 50)) {
       b.makeAlbum(currentName);
       println("clicked");
+      return currentName;
     }
-    return currentName;
+    return "";
   }
   
   void drawButton(String text, float textSize, float x, float y, float w, float h, color c) {
