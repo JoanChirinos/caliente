@@ -24,9 +24,11 @@ class Backend {
       temp.close();
       PrintWriter csv = createWriter(inp + ".csv");
       temp.close();
+      csv.close();
     } else {
       FileWriter output = null;
       PrintWriter csv = createWriter(inp + ".csv");
+      csv.close();
       try {
         output = new FileWriter("album.csv", true); //the true will append the new data
         output.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
@@ -80,14 +82,13 @@ class Backend {
     } else {
       try {
         FileWriter fw = new FileWriter(albumName, true);
-        BufferedWriter output = new BufferedWriter(fw);
-        output.write(url + ",");
-        output.close();
+        fw.write(url + ",");
+        fw.close();
       }
       catch(IOException e) {
         println("Error");
       }
-    }
+    } 
   }
 
   //Deletes an image from an album by parsing through a csv and recopying over urls not equal to the one in parameter
