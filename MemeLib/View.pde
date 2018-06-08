@@ -10,12 +10,14 @@ class View {
   boolean imageBackgroundWasDrawn = false;
   boolean hasSetUp = false;
   
-  boolean shuffle, repeat;
+  boolean shuffle, repeat, play;
   
   String fileName;
   
   int indexAt = 0;
   ArrayList<String> urlList;
+  
+  Backend b = new Backend();
 
   //Main Screen
 
@@ -55,15 +57,28 @@ class View {
     
     //shuffle, back, play, forward, repeat
     //100 wide, 15 gutter, +1 on each side
-    drawButton("Shuffle", 20, 18, 645, 100, 50, white);
+    color hoverColor = color(220, 220, 220);
     
-    drawButton("<<", 20, 134, 645, 100, 50, white);
+    if (shuffle) drawButton("Shuffle", 20, 18, 645, 100, 50, color(145, 255, 135));
+    else drawButton("Shuffle", 20, 18, 645, 100, 50, color(255, 81, 81));
     
-    drawButton("Play", 20, 250, 645, 100, 50, white);
+    if (isHovering(134, 645, 100, 50)) drawButton("<<", 20, 134, 645, 100, 50, hoverColor);
+    else drawButton("<<", 20, 134, 645, 100, 50, white);
     
-    drawButton(">>", 20, 365, 645, 100, 50, white);
+    if (play) {
+      if (isHovering(250, 645, 100, 50)) drawButton("Pause", 20, 250, 645, 100, 50, hoverColor);
+      else drawButton("Pause", 20, 250, 645, 100, 50, white);
+    }
+    else {
+      if (isHovering(250, 645, 100, 50)) drawButton("Play", 20, 250, 645, 100, 50, hoverColor);
+      else drawButton("Play", 20, 250, 645, 100, 50, white);
+    }
     
-    drawButton("Repeat", 20, 482, 645, 100, 50, white);
+    if (isHovering(365, 645, 100, 50)) drawButton(">>", 20, 365, 645, 100, 50, hoverColor);
+    else drawButton(">>", 20, 365, 645, 100, 50, white);
+    
+    if (repeat) drawButton("Repeat", 20, 482, 645, 100, 50, color(145, 255, 135));
+    else drawButton("Repeat", 20, 482, 645, 100, 50, color(255, 81, 81));
 
     if (!imageWasDrawn) {
       drawImage();
@@ -82,6 +97,13 @@ class View {
       imageWasDrawn = false;
       return fileName + ".csv";
     }
+    else if (isHovering(18, 645, 100, 50)) {
+      shuffle = !shuffle;
+    }
+    else if (isHovering(482, 645, 100, 50)) {
+      repeat = !repeat;
+    }
+    
     return "";
   }
   
