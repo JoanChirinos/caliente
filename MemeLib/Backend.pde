@@ -19,6 +19,16 @@ class Backend {
     int min = minute();
     String csvName = inp + ".csv";
     File file = new File(csvName);
+    File albumFile = new File("album.csv");
+    if (! albumFile.exists()){
+      try{
+        FileWriter newAlbumFile = new FileWriter("album.csv");
+        newAlbumFile.close();
+      }
+      catch(IOException e){
+        println("Error: Failed to create album.csv");
+      }
+    }
     if ( file.exists()) {
       println("Error: File Already Exists");
     } else {
