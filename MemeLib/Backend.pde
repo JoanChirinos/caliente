@@ -49,6 +49,7 @@ class Backend {
 
   //Return an ArrayList filled with urls from a csv file
   ArrayList<String> getAL(String albumName) {
+    albumName += ".csv";
     ArrayList<String> album = new ArrayList<String>();
     File csv = new File(albumName);
     if (! csv.exists()) {
@@ -69,14 +70,15 @@ class Backend {
   }
 
   //Adds an image by url
-  void add(String url, String csvFile) {
-    File f = new File(csvFile);
+  void add(String url, String albumName) {
+    albumName += ".csv";
+    File f = new File(albumName);
     if (! f.exists()) {
       println("Error: Input File does not exist");
       return;
     } else {
       try {
-        FileWriter fw = new FileWriter(csvFile, true);
+        FileWriter fw = new FileWriter(albumName, true);
         BufferedWriter output = new BufferedWriter(fw);
         output.write(url + ",");
         output.close();
