@@ -75,7 +75,8 @@ class NewImage {
       b.add(currentURL, currentCSV);
       println("clicked");
       hasSetUpAlready = false;
-      return currentURL;
+      return "done";
+      //return currentCSV.substring(0, currentCSV.length() - 4);
     } else  return "";
   }
 
