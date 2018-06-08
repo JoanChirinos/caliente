@@ -140,18 +140,6 @@ class Albums {
   }
 
   void populateAlbumList() {
-    //temporary sample
-    File f = new File("album.csv");
-    if (!f.exists()) {
-      try {
-        FileWriter albumWriter = new FileWriter("album.csv", true);
-        BufferedWriter aW = new BufferedWriter(albumWriter);
-        aW.close();
-      }
-      catch (IOException ioe) {
-        println("hmm couldn't write the main album file. there goes our grade");
-      }
-    }
     String[] lines = loadStrings("album.csv");
     for (String s : lines) {
       if (!s.equals("")) albumList.add(s.split(","));
