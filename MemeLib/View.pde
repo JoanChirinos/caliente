@@ -4,6 +4,7 @@ class View {
   final color buttonColor = color(255, 163, 163);
   final color buttonColorHover = color(255, 209, 209);
   final color textColor = color(0, 0, 0);
+  final color white = color(255, 255, 255);
   
   boolean imageWasDrawn = false;
   
@@ -40,10 +41,19 @@ class View {
     else drawButton("Add image", 20, 475, 25, 100, 35, buttonColor);
     
     //image area
-    drawButton("", 1, 20, 75, 560, 560, color(255, 255, 255));
+    drawButton("", 1, 20, 75, 560, 560, white);
     
     //shuffle, back, play, forward, repeat
-    drawButton(
+    //100 wide, 15 gutter, +1 on each side
+    drawButton("Shuffle", 20, 16, 570, 100, 50, white);
+    
+    drawButton("<<", 20, 131, 570, 100, 50, white);
+    
+    drawButton("Play", 20, 246, 570, 100, 50, white);
+    
+    drawButton(">>", 20, 361, 570, 100, 50, white);
+    
+    drawButton("Repeat", 20, 476, 570, 100, 50, white);
     
     if (!imageWasDrawn) {
       drawImage();
