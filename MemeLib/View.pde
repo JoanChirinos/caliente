@@ -10,7 +10,7 @@ class View {
   boolean imageBackgroundWasDrawn = false;
   boolean hasSetUp = false;
   
-  boolean shuffle, repeat, play;
+  boolean shuffle, repeat, play = false;
   
   String fileName;
   
@@ -91,6 +91,8 @@ class View {
     //back button
     if (isHovering(25, 25, 75, 35)) {
       imageWasDrawn = false;
+      imageBackgroundWasDrawn = false;
+      hasSetUp = false;
       return "back";
     }
     else if (isHovering(475, 25, 100, 35)) {
@@ -103,7 +105,9 @@ class View {
     else if (isHovering(482, 645, 100, 50)) {
       repeat = !repeat;
     }
-    
+    else if (isHovering(250, 645, 100, 50)) {
+      play = !play;
+    }
     return "";
   }
   
