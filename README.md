@@ -1,5 +1,5 @@
 # caliente: Joan Chirinos, George Liang, Aaron Li
-
+# Project Name: MemeLib
 # Project Description
 Our team hopes to make a functional image/meme library with most, if not all, all the functions of a typical photo viewer/gallery. This includes but is not limited to:
 * Play/Pause button that plays/stops playing a slideshow of images/memes
