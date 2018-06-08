@@ -117,8 +117,10 @@ class Backend {
   void prev() {
   }
 
-  //Displays image in the image screen
-  void displayImage() {
+  //Displays image in the image screen given the img's url
+  void displayImage(String url) {
+    PImage img = loadImage(url);
+    image(img,0,0,600,800);
   }
 
   //Plays the slideshow in the album by following Deque order
