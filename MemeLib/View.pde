@@ -227,10 +227,12 @@ class View {
   void loadURLs() {
     urlList = new ArrayList<String>();
     String[] urls = loadStrings(fileName + ".csv");
-    urls = urls[0].split(",");
-    for (String url : urls) {
-      if (!url.equals("")) urlList.add(url);
+    for (String x : urls) {
+      for (String url : x.split(",")) {
+        if (!url.equals("")) urlList.add(url);
+      }
     }
+    println(urlList);
   }
 
 
