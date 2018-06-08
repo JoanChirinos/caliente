@@ -17,14 +17,14 @@ class Main {
   }
 
   void drawOne() {
-    if (isHovering(50, 25, 500, 200)) drawButton(buttonOne, 40, 50, 25, 500, 200, buttonColorHover);
-    else drawButton(buttonOne, 40, 50, 25, 500, 200, buttonColor);
+    drawText("MemeLib", 130, 10, 25, 580, 200);
+    drawText("Your cool new image library application", 25, 50, 190, 500, 100);
 
-    if (isHovering(50, 250, 500, 200)) drawButton(buttonTwo, 40, 50, 250, 500, 200, buttonColorHover);
-    else drawButton(buttonTwo, 40, 50, 250, 500, 200, buttonColor);
+    if (isHovering(50, 350, 500, 150)) drawButton(buttonTwo, 30, 50, 350, 500, 150, buttonColorHover);
+    else drawButton(buttonTwo, 30, 50, 350, 500, 150, buttonColor);
     
-    if (isHovering(50, 475, 500, 200)) drawButton(buttonThree, 40, 50, 475, 500, 200, buttonColorHover);
-    else drawButton(buttonThree, 40, 50, 475, 500, 200, buttonColor);
+    if (isHovering(50, 525, 500, 150)) drawButton(buttonThree, 30, 50, 525, 500, 150, buttonColorHover);
+    else drawButton(buttonThree, 30, 50, 525, 500, 150, buttonColor);
   }
 
   String onMouseClick() {

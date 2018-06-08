@@ -30,7 +30,7 @@ void draw() {
     a.setup();
     a.drawOne();
   } else if (state == VIEW_SCREEN) {
-    a.setup();
+    v.setup();
     v.drawOne();
   } else if (state == NEW_ALBUM_SCREEN) {
     n.setup();
@@ -43,9 +43,7 @@ void mouseClicked() {
   String ret = "";
   if (state == MAIN_SCREEN) {
     ret = m.onMouseClick();
-    if (ret.equals("all")) {
-      state = VIEW_SCREEN;
-    } else if (ret.equals("albums")) {
+    if (ret.equals("albums")) {
       //display album pane
       state = ALBUMS_SCREEN;
     } else if (ret.equals("exit")) {
@@ -60,15 +58,18 @@ void mouseClicked() {
     else if (ret.equals("newAlbum")) {
       state = NEW_ALBUM_SCREEN;
     }
+    else if (!ret.equals("")) {
+      v.setAlbum(ret);
+      state = VIEW_SCREEN;
+    }
   } else if (state == VIEW_SCREEN) {
-    ret = v.onMouseClick();
+  } else if (state == NEW_ALBUM_SCREEN) {
+    ret = n.onMouseClick();
     if (!ret.equals("")) {
       v.setAlbum(ret);
       state = VIEW_SCREEN;
     }
-  } else if (state == NEW_ALBUM_SCREEN) {
-    ret = n.onMouseClick();
-    
+    else state = MAIN_SCREEN;
   }
 }
 

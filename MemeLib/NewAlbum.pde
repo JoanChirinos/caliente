@@ -59,7 +59,8 @@ class NewAlbum {
     if (isHovering(450, 170, 100, 50)) {
       b.makeAlbum(currentName);
       println("clicked");
-      return currentName;
+      hasSetUpAlready = false;
+      //return currentName;
     }
     return "";
   }
