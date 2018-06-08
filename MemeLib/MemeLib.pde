@@ -12,6 +12,17 @@ View v;
 NewAlbum n;
 
 void setup() {
+  File f = new File("album.csv");
+  if (!f.exists()) {
+    try {
+      FileWriter albumWriter = new FileWriter("album.csv", true);
+      BufferedWriter aW = new BufferedWriter(albumWriter);
+      aW.close();
+    }
+    catch (IOException ioe) {
+      println("hmm couldn't write the main album file. there goes our grade");
+    }
+  }
   size(600, 700);
   background(0, 0, 0);
   state = MAIN_SCREEN;
