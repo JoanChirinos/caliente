@@ -85,8 +85,14 @@ yyyy-mm-dd
 
 2018-05-31
 George :: Drafted our team's first plan, pushed revised proposal, and linked submodule.
+Aarron :: Updated README.md
+2018-06-01
+Joan :: Created Flow.pdf
+George:: Created UML.pdf
 2018-06-07
+Joan :: Worked on the UI for MemeLib
 George :: Implemented methods in Backend.java
+Aaron :: Implemented methods in Backend.java
 
 ==============================================================
 
