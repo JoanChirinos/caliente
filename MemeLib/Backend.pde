@@ -17,35 +17,32 @@ class Backend {
     int y = year();
     int hr = hour();
     int min = minute();  
+    String csvName = inp + ".csv";
+    File file = new File(csvName);
     File albumFile = new File("album.csv");
     if (! albumFile.exists()) {
-      PrintWriter temp = createWriter("album.csv");
-      temp.println(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
-      temp.close();
-      PrintWriter csv = createWriter(inp + ".csv");
-      temp.close();
-      csv.close();
-    } else {
-      FileWriter output = null;
-      PrintWriter csv = createWriter(inp + ".csv");
-      csv.close();
       try {
-        output = new FileWriter("album.csv", true); //the true will append the new data
-        output.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n");
+        FileWriter newAlbumFile = new FileWriter("album.csv");
+        newAlbumFile.close();
+      }
+      catch(IOException e) {        
+        println("Error: Failed to create album.csv");
+      }
+    }
+    if ( file.exists()) {
+      println("Error: File Already Exists");
+    } else {
+      try {
+        FileWriter albumWriter = new FileWriter("album.csv", true);
+        BufferedWriter aW = new BufferedWriter(albumWriter);
+        FileWriter output = new FileWriter(csvName); //Create empty file with the file name
+        aW.write(inp + "," + m + "/" + d + "/" + y + " " + hr + ":" + min + ",0" + "\n" );
+        aW.close();
+        output.close();
       }
       catch (IOException e) {
         println("It Broke");
         e.printStackTrace();
-      }
-      finally {
-        if (output != null) {
-          try {
-            output.close();
-          } 
-          catch (IOException e) {
-            println("Error while closing the writer");
-          }
-        }
       }
     }
   }
@@ -87,7 +84,7 @@ class Backend {
       catch(IOException e) {
         println("Error");
       }
-    } 
+    }
   }
 
   //Deletes an image from an album by parsing through a csv and recopying over urls not equal to the one in parameter
