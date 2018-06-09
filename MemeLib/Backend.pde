@@ -79,7 +79,8 @@ class Backend {
       return;
     } else { // if file exists, just add new url to appropriate csv file
       try {
-        FileWriter fw = new FileWriter(sketchPath() + albumName, true);
+        println("trying to add to: " + sketchPath() + "/data/" + albumName);
+        FileWriter fw = new FileWriter(sketchPath() + "/data/" + albumName, true);
         fw.write(url + ",");
         fw.close();
       }
