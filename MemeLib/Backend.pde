@@ -73,7 +73,7 @@ class Backend {
 
   //Adds an image by url
   void add(String url, String albumName) {
-    File f = new File(sketchPath() + albumName);
+    File f = new File(sketchPath() + "/data/" + albumName);
     if (! f.exists()) { // checks for file existence
       println("Error: Input File does not exist");
       return;
