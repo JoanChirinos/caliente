@@ -41,11 +41,11 @@ class NewImage {
   void drawOne() {
     drawText("New image URL", 30, 50, 50, 500, 50);
     textAlign(LEFT, TOP);
-    drawButton(currentURL, 35, 50, 110, 500, 100, white);
+    drawButton(currentURL, 20, 50, 110, 500, 100, white);
     textAlign(CENTER, CENTER);
 
-    if (isHovering(450, 250, 100, 50)) drawButton("Okay", 30, 450, 250, 100, 50, color(220, 220, 220));
-    else drawButton("Okay", 30, 450, 250, 100, 50, white);
+    if (isHovering(450, 220, 100, 50)) drawButton("Okay", 30, 450, 220, 100, 50, color(220, 220, 220));
+    else drawButton("Okay", 30, 450, 220, 100, 50, white);
 
     if (keyPressed) {
       keyPressDelay--;
@@ -66,12 +66,16 @@ class NewImage {
     }
     
     //paste button
-    if (isHovering(50, 250, 100, 50)) drawButton("Paste from clipboard", 30, 50, 250, 100, 50, color(220, 220, 220));
-    else drawButton("Paste from clipboard", 30, 50, 250, 100, 50, white);
+    if (isHovering(130, 220, 310, 50)) drawButton("Paste from clipboard", 30, 130, 220, 310, 50, color(220, 220, 220));
+    else drawButton("Paste from clipboard", 30, 130, 220, 310, 50, white);
+    
+    //back button
+    if (isHovering(50, 220, 70, 50)) drawButton("Back", 30, 50, 220, 70, 50, color(220, 220, 220));
+    else drawButton("Back", 30, 50, 220, 70, 50, white);
   }
 
   String onMouseClick() {
-    if (isHovering(450, 250, 100, 50) && !currentURL.equals("")) {
+    if (isHovering(450, 220, 100, 50) && !currentURL.equals("")) {
       println("current csv: " + currentCSV + "\ncurrentURL: " + currentURL);
       b.add(currentURL, currentCSV);
       println("clicked");
@@ -79,11 +83,14 @@ class NewImage {
       return "done";
       //return currentCSV.substring(0, currentCSV.length() - 4);
     }
-    else if (isHovering(50, 250, 100, 50)) {
+    else if (isHovering(130, 220, 310, 50)) {
       ClipHelper cp = new ClipHelper();
       currentURL = cp.pasteString();
       cp = null;
       return "";
+    } else if (isHovering(50, 220, 70, 50)) {
+      hasSetUpAlready = false;
+      return "done";
     } else  return "";
   }
 
