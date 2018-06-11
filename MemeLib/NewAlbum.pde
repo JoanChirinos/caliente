@@ -35,11 +35,14 @@ class NewAlbum {
   void drawOne() {
     drawText("New album name", 30, 50, 50, 500, 50);
     textAlign(LEFT, CENTER);
-    drawButton(currentName, 35, 50, 110, 490, 50, white);
+    drawButton(currentName, 35, 50, 110, 500, 50, white);
     textAlign(CENTER, CENTER);
     
     if (isHovering(450, 170, 100, 50)) drawButton("Okay", 30, 450, 170, 100, 50, color(220, 220, 220));
     else drawButton("Okay", 30, 450, 170, 100, 50, white);
+    
+    if (isHovering(50, 170, 100, 50)) drawButton("Back", 30, 50, 170, 100, 50, color(220, 220, 220));
+    else drawButton("Back", 30, 50, 170, 100, 50, white);
     
     drawText("Only letters and numbers please", 15, 50, 210, 500, 50);
     
@@ -70,6 +73,10 @@ class NewAlbum {
       println("clicked");
       hasSetUpAlready = false;
       return currentName;
+    }
+    else if (isHovering(50, 170, 100, 50)) {
+      hasSetUpAlready = false;
+      return "back";
     }
     else  return "";
   }

@@ -120,6 +120,8 @@ class View {
       imageBackgroundWasDrawn = false;
       hasSetUp = false;
       tickCounter = 300;
+      shuffle = repeat = play = false;
+      indexAt = -1;
       return "back";
     } else if (isHovering(475, 25, 100, 35)) {
       imageWasDrawn = false;
@@ -208,7 +210,15 @@ class View {
           return;
         }
       } else indexSet = false;
-      PImage image = loadImage(urlList.get(indexAt).split(",")[0]);
+      PImage image;
+      try {
+        image = loadImage(urlList.get(indexAt).split(",")[0]);
+      }
+      catch (IndexOutOfBoundsException iob) {
+        indexAt = -1;
+        image = loadImage(urlList.get(indexAt).split(",")[0]);
+        println("had to reset indexAt");
+      }
       if (image.width > 560 || image.height > 560) {
         float scale = min(560.0 / image.width, 560.0 / image.height);
         image.resize(int(image.width * scale) - 1, int(image.height * scale) - 1);
@@ -218,9 +228,6 @@ class View {
     catch (NullPointerException npe) {
       println("couldn't load that image. skipping");
       indexAt = (indexAt + 1) % urlList.size();
-    }
-    catch (Exception e) {
-      println("something else went seriously wrong in view");
     }
   }
 

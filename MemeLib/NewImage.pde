@@ -44,16 +44,8 @@ class NewImage {
     drawButton(currentURL, 35, 50, 110, 500, 100, white);
     textAlign(CENTER, CENTER);
 
-    if (isHovering(450, 325, 100, 50)) drawButton("Okay", 30, 450, 325, 100, 50, color(220, 220, 220));
-    else drawButton("Okay", 30, 450, 325, 100, 50, white);
-
-    drawText("Enter the word \"paste\" to paste from your clipboard", 15, 50, 285, 500, 50);
-
-    if (currentURL.equals("paste")) {
-      ClipHelper cp = new ClipHelper();
-      currentURL = cp.pasteString();
-      cp = null;
-    }
+    if (isHovering(450, 250, 100, 50)) drawButton("Okay", 30, 450, 250, 100, 50, color(220, 220, 220));
+    else drawButton("Okay", 30, 450, 250, 100, 50, white);
 
     if (keyPressed) {
       keyPressDelay--;
@@ -72,16 +64,26 @@ class NewImage {
       keyPressDelay--;
       println(keyPressDelay);
     }
+    
+    //paste button
+    if (isHovering(50, 250, 100, 50)) drawButton("Paste from clipboard", 30, 50, 250, 100, 50, color(220, 220, 220));
+    else drawButton("Paste from clipboard", 30, 50, 250, 100, 50, white);
   }
 
   String onMouseClick() {
-    if (isHovering(450, 325, 100, 50) && !currentURL.equals("")) {
+    if (isHovering(450, 250, 100, 50) && !currentURL.equals("")) {
       println("current csv: " + currentCSV + "\ncurrentURL: " + currentURL);
       b.add(currentURL, currentCSV);
       println("clicked");
       hasSetUpAlready = false;
       return "done";
       //return currentCSV.substring(0, currentCSV.length() - 4);
+    }
+    else if (isHovering(50, 250, 100, 50)) {
+      ClipHelper cp = new ClipHelper();
+      currentURL = cp.pasteString();
+      cp = null;
+      return "";
     } else  return "";
   }
 

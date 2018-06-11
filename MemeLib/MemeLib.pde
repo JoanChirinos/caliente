@@ -54,8 +54,7 @@ void draw() {
   } else if (state == NEW_ALBUM_SCREEN) {
     n.setup();
     n.drawOne();
-  }
-  else if (state == NEW_IMAGE_SCREEN) {
+  } else if (state == NEW_IMAGE_SCREEN) {
     ni.setup();
     ni.drawOne();
   }
@@ -77,11 +76,9 @@ void mouseClicked() {
     ret = a.onMouseClick();
     if (ret.equals("back")) {
       state = MAIN_SCREEN;
-    }
-    else if (ret.equals("newAlbum")) {
+    } else if (ret.equals("newAlbum")) {
       state = NEW_ALBUM_SCREEN;
-    }
-    else if (!ret.equals("")) {
+    } else if (!ret.equals("")) {
       v.setAlbum(ret);
       state = VIEW_SCREEN;
     }
@@ -90,20 +87,20 @@ void mouseClicked() {
     println(ret);
     if (ret.equals("back")) {
       state = ALBUMS_SCREEN;
-    }
-    else if (!ret.equals("")) {
+    } else if (!ret.equals("")) {
       ni.setCSV(ret);
       ni.setup();
       state = NEW_IMAGE_SCREEN;
     }
   } else if (state == NEW_ALBUM_SCREEN) {
     ret = n.onMouseClick();
-    if (!ret.equals("")) {
+    if (ret.equals("back")) {
+      state = ALBUMS_SCREEN;
+    } else if (!ret.equals("")) {
       v.setAlbum(ret);
       state = VIEW_SCREEN;
     }
-  }
-  else if (state == NEW_IMAGE_SCREEN) {
+  } else if (state == NEW_IMAGE_SCREEN) {
     ret = ni.onMouseClick();
     if (ret.equals("done")) {
       state = VIEW_SCREEN;
